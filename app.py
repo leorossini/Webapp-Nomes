@@ -16,6 +16,7 @@ def main():
     st.text("Frequência de Nomes no Brasil")
     st.text("Fonte: Dados do IBGE (Beta por Leo Rossini)")
     nome = st.text_input("Digite um nome para análise:", key="nome_input")
+    porProporcao = st.checkbox("Exibir proporção por 100 mil habitantes ao invés de Quantidade por UF", value=True, key="proporcao_checkbox")
     if nome:
         col1, col2 = st.columns(2)
         
@@ -27,7 +28,7 @@ def main():
             col1.line_chart(dfDecada, x="Decada", y='Frequência', y_label='Quantidade')
 
         col2.text("Frequência por UF:")
-        dictFreqUFs = ibge.getFrequenciaNomesPorEstados(nome, porProporcao=False)
+        dictFreqUFs = ibge.getFrequenciaNomesPorEstados(nome, porProporcao=porProporcao)
         if dictFreqUFs:
             df = pd.DataFrame.from_dict(dictFreqUFs, orient='index', columns=['Frequência'])
             df['UF'] = df.index.map(ibge.getIdUFs())
