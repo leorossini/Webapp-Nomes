@@ -12,9 +12,8 @@ st.set_page_config(
 
 def main():
     # dados
-    st.title("Frequência de Nomes no Brasil")
-    st.text("Fonte: Dados do IBGE")
-    st.text("Beta por Leo Rossini")
+    st.text("Frequência de Nomes no Brasil")
+    st.text("Fonte: Dados do IBGE (Beta por Leo Rossini)")
     nome = st.text_input("Digite um nome para análise:", key="nome_input")
     if nome:
         col1, col2 = st.columns(2)
@@ -28,10 +27,11 @@ def main():
 
         col2.text("Frequência por UF:")
         dictFreqUFs = ibge.getFrequenciaNomesPorEstados(nome, porProporcao=False)
-        df = pd.DataFrame.from_dict(dictFreqUFs, orient='index', columns=['Frequência'])
-        df['UF'] = df.index.map(ibge.getIdUFs())
-        dfShow = df[['UF', 'Frequência']].sort_values(by='UF')
-        col2.bar_chart(dfShow, x='UF', y='Frequência',y_label='Quantidade', horizontal=True)
+        if dictFreqUFs:
+            df = pd.DataFrame.from_dict(dictFreqUFs, orient='index', columns=['Frequência'])
+            df['UF'] = df.index.map(ibge.getIdUFs())
+            dfShow = df[['UF', 'Frequência']].sort_values(by='UF')
+            col2.bar_chart(dfShow, x='UF', y='Frequência',y_label='Quantidade', horizontal=True)
         
         
 
