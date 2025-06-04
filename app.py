@@ -35,7 +35,8 @@ def main():
             col2.bar_chart(dfShow, x='UF', y='Frequência',y_label='Quantidade', horizontal=True)
         if not dictFreqDecada:
             alert = st.warning("Nenhum dado encontrado para o nome informado.", icon="⚠️")
-            time.sleep(5)
+            time.sleep(10)
+            alert.empty()
             
 
         
