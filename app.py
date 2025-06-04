@@ -13,8 +13,8 @@ st.set_page_config(
 
 def main():
     # dados
-    st.text("Frequência de Nomes no Brasil")
-    st.text("Fonte: Dados do IBGE (Beta por Leo Rossini)")
+    st.subheader("Frequência de Nomes no Brasil")
+    st.markdown("Fonte: Dados do IBGE (Beta por Leo Rossini)")
     nome = st.text_input("Digite um nome para análise:", key="nome_input")
     porProporcao = st.checkbox("Exibir proporção por 100 mil habitantes ao invés de Quantidade por UF", value=True, key="proporcao_checkbox")
     if nome:
