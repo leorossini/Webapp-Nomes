@@ -2,6 +2,7 @@ import requestIBGE as ibge
 import streamlit as st
 import pandas as pd
 import numpy as np
+import time
 
 st.set_page_config(
     page_title="Frequência de Nomes no Brasil",
@@ -33,7 +34,10 @@ def main():
             dfShow = df[['UF', 'Frequência']].sort_values(by='UF')
             col2.bar_chart(dfShow, x='UF', y='Frequência',y_label='Quantidade', horizontal=True)
         if not dictFreqDecada:
-            st.warning("Nenhum dado encontrado para o nome informado.")
+            alert = st.warning("Nenhum dado encontrado para o nome informado.", icon="⚠️")
+            time.sleep(5)
+            
+
         
 
 
