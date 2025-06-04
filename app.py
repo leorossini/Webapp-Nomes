@@ -32,7 +32,8 @@ def main():
             df['UF'] = df.index.map(ibge.getIdUFs())
             dfShow = df[['UF', 'Frequência']].sort_values(by='UF')
             col2.bar_chart(dfShow, x='UF', y='Frequência',y_label='Quantidade', horizontal=True)
-        
+        if not dictFreqDecada:
+            st.warning("Nenhum dado encontrado para o nome informado.")
         
 
 
